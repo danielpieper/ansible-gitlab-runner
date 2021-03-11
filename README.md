@@ -18,7 +18,7 @@ TODO: A description of the settable variables for this role should go here, incl
 Dependencies
 ------------
 
-The `homebrew` role from the `community.general` collection is required.
+None.
 
 Example Playbook
 ----------------
@@ -27,7 +27,7 @@ Example Playbook
 - hosts: localhost
   connection: local
   roles:
-     - { role: danielpieper.gitlab-runner }
+     - { role: danielpieper.gitlab_runner }
 ```
 
 License
