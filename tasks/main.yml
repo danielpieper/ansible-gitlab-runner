@@ -25,16 +25,17 @@
       mode: 0755
 
   - name: 'Download {{ gitlab_runner_url }} to {{ gitlab_runner_exe }}'
-    get_url:
+    ansible.builtin.get_url:
       url: '{{ gitlab_runner_url }}'
       dest: '{{ gitlab_runner_exe }}'
       checksum: '{{ gitlab_runner_checksum }}'
+      mode: 0755
 
   when: gitlab_runner_present.stat.exists is false
 
 
 - name: 'Link {{ gitlab_runner_link }} to {{ gitlab_runner_exe }}'
-  file:
+  ansible.builtin.file:
     src: '{{ gitlab_runner_exe }}'
     dest: '{{ gitlab_runner_link }}'
     state: link
