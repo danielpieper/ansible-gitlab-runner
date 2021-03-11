@@ -1,0 +1,12 @@
+---
+# https://gitlab-runner-downloads.s3.amazonaws.com/latest/index.html
+gitlab_runner_ver: '13.9.0'
+gitlab_runner_mirror: 'https://gitlab-runner-downloads.s3.amazonaws.com'
+gitlab_runner_os: 'linux'
+gitlab_runner_arch: 'amd64'
+gitlab_runner_install_dir: '{{ ansible_env.HOME }}/.local/bin'
+
+gitlab_runner_checksums:
+  13.9.0:
+    linux-amd64: 'sha256:e41d5849024d9e41d3ab8301897bdcdb9d0d30166c77135327ad216b983ca498'
+    darwin-amd64: 'sha256:2ef599481e411a8d3fdf2097311d37ed9aeac40de1658e3bd8a6435a3dc71fca'

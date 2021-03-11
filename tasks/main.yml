@@ -1,0 +1,40 @@
+---
+- name: resolve platform specific vars
+  include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      skip: true
+      paths:
+        - '{{ role_path }}/vars'
+
+
+- name: 'Check if {{ gitlab_runner_exe }} is installed'
+  stat:
+    path: '{{ gitlab_runner_exe }}'
+  register: gitlab_runner_present
+
+
+- block:
+  - name: 'Ensure {{ gitlab_runner_install_dir }} exists'
+    ansible.builtin.file:
+      path: '{{ gitlab_runner_install_dir }}'
+      state: directory
+      mode: 0755
+
+  - name: 'Download {{ gitlab_runner_url }} to {{ gitlab_runner_install_dir }}'
+    get_url:
+      url: '{{ gitlab_runner_url }}'
+      dest: '{{ gitlab_runner_install_dir }}'
+      checksum: '{{ gitlab_runner_checksum }}'
+
+  when: gitlab_runner_present.stat.exists is false
+
+
+- name: 'Link {{ gitlab_runner_link }} to {{ gitlab_runner_exe }}'
+  file:
+    src: '{{ gitlab_runner_exe }}'
+    dest: '{{ gitlab_runner_link }}'
+    state: link
