@@ -1,7 +1,7 @@
 galaxy_info:
   author: danielpieper
   description: Installs gitlab-runner
-  role_name: gitlab-runner
+  role_name: gitlab_runner
   issue_tracker_url: https://github.com/danielpieper/ansible-gitlab-runner/issues
   license: MIT
   min_ansible_version: 2.9
