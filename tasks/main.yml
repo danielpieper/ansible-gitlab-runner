@@ -24,10 +24,10 @@
       state: directory
       mode: 0755
 
-  - name: 'Download {{ gitlab_runner_url }} to {{ gitlab_runner_install_dir }}'
+  - name: 'Download {{ gitlab_runner_url }} to {{ gitlab_runner_exe }}'
     get_url:
       url: '{{ gitlab_runner_url }}'
-      dest: '{{ gitlab_runner_install_dir }}'
+      dest: '{{ gitlab_runner_exe }}'
       checksum: '{{ gitlab_runner_checksum }}'
 
   when: gitlab_runner_present.stat.exists is false
